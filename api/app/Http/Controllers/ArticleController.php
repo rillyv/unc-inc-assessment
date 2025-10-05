@@ -82,8 +82,18 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        $user = $request->user();
+
+        $article = Article::with('user')->findOrFail($id);
+
+        if ($user->role !== UserRole::ADMIN->value && $article->user_id !== $user->id) {
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
+        $article->delete();
+
+        return response()->json($article);
     }
 }
