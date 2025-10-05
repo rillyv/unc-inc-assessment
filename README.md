@@ -12,6 +12,11 @@
 
 ## Setup
 
+### Environment setup
+1. Run `make setup`
+2. cd api && php artisan key:generate
+3. Run `make up`
+
 ### Prerequisites
 - Docker & Docker Compose
 - Make (for convenience)
