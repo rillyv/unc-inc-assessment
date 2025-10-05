@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "unc-inc-assessment",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
