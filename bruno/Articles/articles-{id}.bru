@@ -1,0 +1,15 @@
+meta {
+  name: /articles/{id}
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{API_BASE_URL}}/api/articles/1
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

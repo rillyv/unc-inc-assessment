@@ -30,7 +30,7 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return response()->json(Article::with('user')->findOrFail($id));
     }
 
     /**
