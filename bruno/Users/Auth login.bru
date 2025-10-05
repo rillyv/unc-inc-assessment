@@ -5,9 +5,16 @@ meta {
 }
 
 post {
-  url: {{API_BASE_URL}}/auth/login
-  body: none
+  url: {{API_BASE_URL}}/api/auth/login
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+    "email": "test@example.com",
+    "password": "password"
+  }
 }
 
 settings {
