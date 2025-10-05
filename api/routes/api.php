@@ -11,6 +11,9 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/auth/login', [AuthController::class, 'login']);
 
-Route::apiResources([
-    'articles' => ArticleController::class,
-]);
+Route::get('/articles', [ArticleController::class, 'index']);
+Route::get('/articles/{article}', [ArticleController::class, 'show']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/articles', [ArticleController::class, 'store']);
+});

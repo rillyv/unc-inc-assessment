@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -22,7 +23,18 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|min:3',
+            'content' => 'required|min:30',
+            'image_path' => 'nullable|string',
+        ]);
+
+        $data['user_id'] = Auth::id();
+
+        $article = Article::create($data);
+
+        // TODO: call Python microservice for summary + keywords
+        return response()->json($article, 201);
     }
 
     /**

@@ -1,11 +1,11 @@
 meta {
-  name: /articles/{id}
+  name: Fetch all articles
   type: http
-  seq: 2
+  seq: 1
 }
 
 get {
-  url: {{API_BASE_URL}}/api/articles/1
+  url: {{API_BASE_URL}}/api/articles
   body: none
   auth: inherit
 }
