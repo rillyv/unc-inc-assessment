@@ -22,7 +22,7 @@ def analyze():
 
     return jsonify({
         "summary": summary,
-        "tags": common
+        "keywords": common
     })
 
 if __name__ == "__main__":
