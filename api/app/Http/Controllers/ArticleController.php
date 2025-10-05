@@ -7,6 +7,7 @@ use App\Jobs\AnalyzeArticle;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ArticleController extends Controller
 {
@@ -15,9 +16,12 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return response()->json(
-            Article::with('user')->latest()->paginate(10),
-        );
+        $page = request('page', 1);
+        $key = "articles:page:{$page}";
+
+        return Cache::remember($key, now()->addMinutes(10), function () {
+            return Article::with('user')->latest()->paginate(10);
+        });
     }
 
     /**
@@ -54,7 +58,9 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        return response()->json(Article::with('user')->findOrFail($id));
+        return Cache::remember("article:{$id}", now()->addMinutes(10), function () use ($id) {
+            return Article::findOrFail($id);
+        });
     }
 
     /**
