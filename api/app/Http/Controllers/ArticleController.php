@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserRole;
+use App\Jobs\AnalyzeArticle;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,8 @@ class ArticleController extends Controller
 
         $article = Article::create($data);
 
-        // TODO: call Python microservice for summary + keywords
+        AnalyzeArticle::dispatch($article->id);
+
         return response()->json($article, 201);
     }
 
@@ -75,6 +77,8 @@ class ArticleController extends Controller
         ]);
 
         $article->update($data);
+
+        AnalyzeArticle::dispatch($article->id);
 
         return response()->json($article);
     }

@@ -35,4 +35,7 @@ return [
         ],
     ],
 
+    'nlp_service' => [
+        'url' => env('NLP_SERVICE_URL', 'http://nlp_service:5000'),
+    ],
 ];
