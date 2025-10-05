@@ -3,6 +3,7 @@ setup:
 	cd ../nlp_service && cp .env.example .env
 
 up:
+	make setup
 	docker compose up -d
 	sleep 3
 	docker compose exec api php artisan migrate --force
