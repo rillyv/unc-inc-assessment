@@ -34,7 +34,7 @@ make down
 ### Authentication
 
 #### `POST /auth/login`
-Authenticate user and return a JWT token.
+Authenticate user and return a session token.
 
 **Body**
 ```json
