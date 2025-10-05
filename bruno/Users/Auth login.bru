@@ -1,11 +1,11 @@
 meta {
-  name: Create user
+  name: Auth login
   type: http
   seq: 1
 }
 
-get {
-  url: {{API_BASE_URL}}
+post {
+  url: {{API_BASE_URL}}/auth/login
   body: none
   auth: inherit
 }
