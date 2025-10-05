@@ -33,6 +33,13 @@ services:
     volumes:
       - database_data:/var/lib/mysql
 
+  nlp_service:
+    build: nlp_service/.
+    volumes:
+      - ./nlp_service:/app
+    ports:
+      - "5000:5000"
+
 volumes:
   database_data:
   storage_data:
