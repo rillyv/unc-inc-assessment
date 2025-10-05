@@ -4,19 +4,19 @@ meta {
   seq: 4
 }
 
-post {
-  url: {{API_BASE_URL}}/api/articles
+put {
+  url: {{API_BASE_URL}}/api/articles/39
   body: json
   auth: bearer
 }
 
 auth:bearer {
-  token: 6|ks2tKr1UtWbqM7oTPzzVyof0y6cS1dcwwzhHmII05438c5f9
+  token: {{session_token}}
 }
 
 body:json {
   {
-    "title": "New article",
+    "title": "New article edit2",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   }
 }

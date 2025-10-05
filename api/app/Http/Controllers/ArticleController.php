@@ -27,8 +27,8 @@ class ArticleController extends Controller
         $user = $request->user();
 
         if (
-            $user->role !== UserRole::ADMIN ||
-            $user->role !== UserRole::AUTHOR
+            $user->role !== UserRole::ADMIN->value &&
+            $user->role !== UserRole::AUTHOR->value
         ) {
             return response()->json(['message' => 'Forbidden'], 403);
         }
@@ -64,7 +64,7 @@ class ArticleController extends Controller
 
         $article = Article::with('user')->findOrFail($id);
 
-        if ($user->role !== UserRole::ADMIN && $article->user_id !== $user->id) {
+        if ($user->role !== UserRole::ADMIN->value && $article->user_id !== $user->id) {
             return response()->json(['message' => 'Forbidden'], 403);
         }
 

@@ -16,5 +16,5 @@ Route::get('/articles/{article}', [ArticleController::class, 'show']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/articles', [ArticleController::class, 'store']);
-    Route::post('/articles/{id}', [ArticleController::class, 'update']);
+    Route::put('/articles/{id}', [ArticleController::class, 'update']);
 });
