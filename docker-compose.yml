@@ -20,6 +20,13 @@ services:
     depends_on:
       - api
 
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
   database:
     image: mysql:latest
     restart: unless-stopped
@@ -44,3 +51,4 @@ volumes:
   database_data:
   storage_data:
   cache_data:
+  redis_data:
