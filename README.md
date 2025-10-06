@@ -3,7 +3,7 @@
 ## Overview
 
 **Extra Challenges Implemented**
-- **Performance:** Caching for `GET /articles` and `GET /articles/{id}` with Redis, plus DB indexing.
+- **Performance:** Caching for `GET /api/articles` and `GET /api/articles/{id}` with Redis, plus DB indexing.
 - **Asynchronous Processing:** Laravel Queue (Redis) pushes article analysis jobs instead of calling the Python service directly.
 
 **Design Trade-offs**
@@ -38,7 +38,7 @@ make down
 
 ### Authentication
 
-#### `POST /auth/login`
+#### `POST /api/auth/login`
 Authenticate user and return a session token.
 
 **Body**
@@ -51,23 +51,23 @@ Authenticate user and return a session token.
 
 ### Articles
 
-#### `GET /articles`
+#### `GET /api/articles`
 Paginated list of articles (public).
 Supports caching per page.
 
-#### `GET /articles/{id}`
+#### `GET /api/articles/{id}`
 Fetch single article (public).
 Cached by article ID.
 
-#### `POST /articles`
+#### `POST /api/articles`
 Create a new article (authenticated).
 Triggers background job to call the Python microservice.
 
-#### `PUT /articles/{id}`
+#### `PUT /api/articles/{id}`
 Update an existing article (author or admin only).
 Also re-analyzes via background job.
 
-#### `DELETE /articles/{id}`
+#### `DELETE /api/articles/{id}`
 Delete article (author or admin only).
 
 ## Python NLP Microservice
@@ -78,7 +78,6 @@ Delete article (author or admin only).
 **Input**
 ```json
 {
-  "title": "Some title",
   "content": "Full article text..."
 }
 ```
@@ -100,5 +99,5 @@ To test:
 1. Open Bruno.
 2. Import the bruno folder.
 3. Use the `local` environment to hit your local API.
-4. Authenticate via `/auth/login` before using POST, PUT, or DELETE endpoints.
+4. Authenticate via `/api/auth/login` before using POST, PUT, or DELETE endpoints.
 
